@@ -3,7 +3,17 @@ from .models import*
 # Register your models here.
 
 admin.site.register(accountsCheck)
-admin.site.register(userAddress)
-admin.site.register(addressDetails)
+
+class userAddressAdmin(admin.ModelAdmin):
+    list_display = ('fname', 'lname', 'user','address', 'city','state','zip','tag','is_dataRetrived')
+
+class addressDetailsAdmin(admin.ModelAdmin):
+    list_display = ('number', 'address')
+
+class detailsTagsAdmin(admin.ModelAdmin):
+    list_display = ('user', 'addressDetails')
+
+admin.site.register(userAddress,userAddressAdmin)
+admin.site.register(addressDetails,addressDetailsAdmin)
 admin.site.register(addressDetailsTags)
-admin.site.register(detailsTags)
+admin.site.register(detailsTags,detailsTagsAdmin)

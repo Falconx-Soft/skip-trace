@@ -28,6 +28,9 @@ class userAddress(models.Model):
 
     def __str__(self):
         return self.address
+    class Meta:
+        verbose_name = "User Address"
+        verbose_name_plural = "User Address"
 
 
 class addressDetails(models.Model):
@@ -37,13 +40,28 @@ class addressDetails(models.Model):
 
     def __str__(self):
         return str(self.number)
+    class Meta:
+        verbose_name = "Address Details"
+        verbose_name_plural = "Address Details"
 
 class addressDetailsTags(models.Model):
     tagName = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.tagName
+    class Meta:
+        verbose_name = "Address Detail Tags"
+        verbose_name_plural = "Address Detail Tags"
 
 class detailsTags(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     addressDetails = models.ForeignKey(addressDetails, on_delete=models.CASCADE)
     tags = models.ManyToManyField(addressDetailsTags, blank=True)
+
+    def __str__(self):
+        return str(self.addressDetails.number)
+    class Meta:
+        verbose_name = "Address Detail Assigned Tags"
+        verbose_name_plural = "Address Detail Assigned Tags"
 
 
