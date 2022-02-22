@@ -222,7 +222,7 @@ def fileUpload(request):
 			print(row)
 			data = row.split(",")
 			if(row):
-				userAddress.objects.create(fname=data[0],lname=data[1],user=request.user,address=data[2],city=data[3],state=data[4],zip=data[5])
+				userAddress.objects.create(fname=data[0],lname=data[1],user=request.user,address=data[2],city=data[3],state=data[4],zip=data[5],tag=data[6])
 	return redirect('home')
 
 def deleteTag(request, pk, id,did):
